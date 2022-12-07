@@ -14,22 +14,9 @@ def read_csv(file_name: str) -> Dict[int, List[int]]:
     :param file_name: string
     :return: graph
     """
-    dct_result = {}
+    # Your code goes here(delete "pass" keyword)
+    pass
 
-    # read scv file and create a list of all list of list elements in lines
-    with open(file_name, 'r', encoding='utf-8') as matrix:
-        lst_lines = [line.strip().split(',') for line in matrix.readlines()]
-
-    # create keys with value (= empty list) of graph vertex in result dict
-    [dct_result.update({i: []}) for i in range(1, len(lst_lines) + 1)]
-
-    # fill in dict 
-    for i, line in enumerate(lst_lines):
-        for k, element in enumerate(line):
-            if element == '1':
-                dct_result[i + 1].append(k + 1)
-
-    return dct_result
 
 def bfs(graph: Dict[int, List[int]]) -> List[int]:
     """
