@@ -30,7 +30,8 @@ def read_csv(file_name: str) -> Dict[int, List[int]]:
                 dct_result[i].append(k)
 
     return dct_result
-print(read_csv('graph.csv'))
+
+
 def bfs(graph: Dict[int, List[int]]) -> List[int]:
     """
     perform bfs on the graph and store its result
@@ -39,8 +40,26 @@ def bfs(graph: Dict[int, List[int]]) -> List[int]:
     :param graph: dict(key=int, value=list(int))
     :return: bfs-result
     """
-    pass
+    lst_result = [0]
+    help_lst = [0]
+    help_graph = {}
 
+    #fill in help graph without empty vertex
+    for key in graph:
+        if not len(graph[key]) == 0:
+            help_graph.update({key: graph[key]})
+
+    #create stack of bfs of graph
+    while len(lst_result) != len(help_graph):
+        for _ in help_lst:
+            for i in help_graph[help_lst[0]]:
+                if not i in lst_result:
+                    help_lst.append(i)
+                    lst_result.append(i)
+            help_lst.remove(help_lst[0])
+
+
+    return lst_result
 
 def dfs(graph: Dict[int, List[int]]) -> List[int]:
     """
