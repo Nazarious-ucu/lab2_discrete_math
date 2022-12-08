@@ -21,16 +21,16 @@ def read_csv(file_name: str) -> Dict[int, List[int]]:
         lst_lines = [line.strip().split(',') for line in matrix.readlines()]
 
     # create keys with value (= empty list) of graph vertex in result dict
-    [dct_result.update({i: []}) for i in range(1, len(lst_lines) + 1)]
+    [dct_result.update({i: []}) for i in range(len(lst_lines))]
 
     # fill in dict
     for i, line in enumerate(lst_lines):
         for k, element in enumerate(line):
             if element == '1':
-                dct_result[i + 1].append(k + 1)
+                dct_result[i].append(k)
 
     return dct_result
-
+print(read_csv('graph.csv'))
 def bfs(graph: Dict[int, List[int]]) -> List[int]:
     """
     perform bfs on the graph and store its result
@@ -39,7 +39,6 @@ def bfs(graph: Dict[int, List[int]]) -> List[int]:
     :param graph: dict(key=int, value=list(int))
     :return: bfs-result
     """
-    # Your code goes here(delete "pass" keyword)
     pass
 
 
