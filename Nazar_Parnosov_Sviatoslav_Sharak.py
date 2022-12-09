@@ -74,14 +74,15 @@ def dfs(graph: Dict[int, List[int]]) -> List[int]:
     result = []
     check_list = []
     for key in graph.keys():
-        if key not in check_list:
-            check_list.append(key)
-            result.append(key)
-            for elem in graph[key]:
-                if elem not in check_list:
-                    check_list.append(elem)
-                    result.append(elem)
-                    break
+        if len(graph[key]) != 0:
+            if key not in check_list:
+                check_list.append(key)
+                result.append(key)
+                for elem in graph[key]:
+                    if elem not in check_list:
+                        check_list.append(elem)
+                        result.append(elem)
+                        break
     return result
 
 
