@@ -40,8 +40,13 @@ def bfs(graph: Dict[int, List[int]]) -> List[int]:
     :param graph: dict(key=int, value=list(int))
     :return: bfs-result
     """
-    lst_result = [0]
-    help_lst = [0]
+    return help_bfs(graph, 0)
+
+def help_bfs(graph, first_vertex):
+    """
+    help func to bfs
+    """
+    lst_result = [first_vertex]
     help_graph = {}
 
     #fill in help graph without empty vertex
@@ -51,13 +56,10 @@ def bfs(graph: Dict[int, List[int]]) -> List[int]:
 
     #create stack of bfs of graph
     while len(lst_result) != len(help_graph):
-        for _ in help_lst:
-            for i in help_graph[help_lst[0]]:
+        for k in lst_result:
+            for i in help_graph[k]:
                 if not i in lst_result:
-                    help_lst.append(i)
                     lst_result.append(i)
-            help_lst.remove(help_lst[0])
-
 
     return lst_result
 
@@ -84,7 +86,7 @@ def calc_pow(graph: Dict[int, List[int]]) -> Dict[int, int]:
     pass
 
 
-def find_path(n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+def find_path(number: int, edges: List[List[int]], source: int, destination: int) -> bool:
     """
     here is another way of representing a graph:
     edges - is a list of edges of a graph,
@@ -98,5 +100,23 @@ def find_path(n: int, edges: List[List[int]], source: int, destination: int) -> 
     :param destination: int
     :return:
     """
-    # Your code goes here(delete "pass" keyword)
-    pass
+    graph = {}
+
+    #if num of vertex is 0
+    if number == 0:
+        return False
+    #transform graph from list of lists to dictionary
+    for edge in edges:
+        for i, elem in enumerate(edge):
+            if elem in graph:
+                graph[elem].append(edge[i - 1])
+            else:
+                graph[elem] = [edge[i - 1]]
+
+    #call func help_bsv from vertex sourse
+    lst_bfs = help_bfs(graph, source)
+
+    #return values
+    if destination in lst_bfs:
+        return True
+    return False
