@@ -41,7 +41,6 @@ def bfs(graph: Dict[int, List[int]]) -> List[int]:
     :return: bfs-result
     """
     lst_result = [0]
-    # help_lst = [0]
     help_graph = {}
 
     #fill in help graph without empty vertex
@@ -55,13 +54,8 @@ def bfs(graph: Dict[int, List[int]]) -> List[int]:
             for i in help_graph[k]:
                 if not i in lst_result:
                     lst_result.append(i)
-                    # lst_result.append(i)
-            # help_lst.remove(help_lst[0])
-
 
     return lst_result
-
-print(bfs(read_csv('graph.csv')))
 
 def dfs(graph: Dict[int, List[int]]) -> List[int]:
     """
