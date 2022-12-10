@@ -71,10 +71,19 @@ def dfs(graph: Dict[int, List[int]]) -> List[int]:
     :param graph:  dict(key=int, value=list(int))
     :return: dfs-result
     """
-    # Your code goes here(delete "pass" keyword)
-    pass
-
-
+    result = []
+    check_list = []
+    for key in graph.keys():
+        if len(graph[key]) != 0:
+            if key not in check_list:
+                check_list.append(key)
+                result.append(key)
+                for elem in graph[key]:
+                    if elem not in check_list:
+                        check_list.append(elem)
+                        result.append(elem)
+                        break
+    return result
 def calc_pow(graph: Dict[int, List[int]]) -> Dict[int, int]:
     """
     calculate power of every vertex of your graph(i.e. number adjacent edges)
@@ -82,10 +91,9 @@ def calc_pow(graph: Dict[int, List[int]]) -> Dict[int, int]:
     :param graph: dict(key=int, value=list(int))
     :return: vertices and their powers
     """
-    # Your code goes here(delete "pass" keyword)
-    pass
-
-
+    for key in graph.keys():
+        graph[key] = len(graph[key])
+    return graph
 def find_path(number: int, edges: List[List[int]], source: int, destination: int) -> bool:
     """
     here is another way of representing a graph:
